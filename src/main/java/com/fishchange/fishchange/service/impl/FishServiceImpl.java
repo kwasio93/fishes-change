@@ -4,6 +4,7 @@ import com.fishchange.fishchange.model.domain.Fish;
 import com.fishchange.fishchange.model.repository.FishRepository;
 import com.fishchange.fishchange.service.FishService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,26 @@ public class FishServiceImpl implements FishService {
     @Override
     public List<Fish> findAll() {
         return fishRepository.findAll();
+    }
+
+    @Override
+    public List<Fish> findAllByName(String name) {
+        return fishRepository.findAllByName(name);
+    }
+
+    @Override
+    public List<Fish> findFishesByName(String name) {
+        return fishRepository.findFishesByName(name);
+    }
+
+    @Override
+    public List<Fish> sortWithQuery() {
+        return fishRepository.sortAllFish();
+    }
+
+    @Override
+    public List<Fish> sortWithDefault(Sort sort) {
+        return fishRepository.findAll(sort);
     }
 
     @Override
